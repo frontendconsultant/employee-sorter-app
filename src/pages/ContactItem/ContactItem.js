@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./ContactItem.css";
 
-class ContactItem extends Component {
-  render() {
-    const { name, email, pic } = this.props;
+function ContactItem(props) {
+    const { name, email, pic } = props;
     return (
       <div className="UserCard">
         <div className="UserCardTop">
@@ -16,7 +15,6 @@ class ContactItem extends Component {
         </div>
       </div>
     );
-  }
 }
 ContactItem.propTypes = {
   name: PropTypes.string.isRequired,
