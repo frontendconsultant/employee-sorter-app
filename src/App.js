@@ -1,5 +1,4 @@
 import React from 'react';
-import Tabs from './Tabs';
 import AppContainer from './AppContainer';
 require('./index.css');
 

@@ -1,9 +1,5 @@
 .UserCard {
-    width: 300px;
-    height: 250px;
     border-radius: 10px;
-    box-shadow: 5px 5px 30px black;
-    margin: 10px;
     background: #a1b9df; /* fallback for old browsers */
   }
   

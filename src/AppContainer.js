@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Tabs from './Tabs';
-import Accordion from './Accordion';
+import Tabs from './components/Tabs';
+import ExpandableList from './components/ExpandableList';
 import ContactItem from './pages/ContactItem/ContactItem'
 
 const config = require("./config.json");
@@ -64,7 +64,9 @@ class AppContainer extends Component {
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <div> 
+               <img alt="loading" src="loading.gif" />
+          </div>;
       } else {
         return (
           <Tabs>
@@ -72,14 +74,14 @@ class AppContainer extends Component {
               <div label={item.alphabet} count={item.itemCollection.length}>
                  {
                    item.itemCollection.map( (coll, index) => (
-                    <Accordion title={`${coll.name.last}, ${coll.name.first}`}>
+                    <ExpandableList title={`${coll.name.last}, ${coll.name.first}`}>
                     <ContactItem
                       key={index}
                       name={`${coll.name.last}, ${coll.name.first.toUpperCase()}`}
                       email={coll.email}
                       pic={coll.picture.thumbnail}
                     />
-                  </Accordion>
+                  </ExpandableList>
                    ))
                  }
               </div>
