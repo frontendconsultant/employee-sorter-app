@@ -3,18 +3,16 @@ import Chevron from "./Chevron";
 
 import "./ExpandableList.css";
 
-function ExpandableList(props) {
+const ExpandableList = ({ title, children }) => {
   const [setActive, setActiveState] = useState("");
   const [setHeight, setHeightState] = useState("0px");
   const [setRotate, setRotateState] = useState("expandableList__icon");
 
   const content = useRef(null);
 
-  function toggleExpandableList() {
+  const toggleExpandableList = () => {
     setActiveState(setActive === "" ? "active" : "");
-    setHeightState(
-      setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
-    );
+    setHeightState(setActive === "active" ? "0px" : `${content.current.scrollHeight}px`);
     setRotateState(
       setActive === "active"
         ? "expandableList__icon"
@@ -28,7 +26,7 @@ function ExpandableList(props) {
         className={`expandableList ${setActive}`}
         onClick={toggleExpandableList}
       >
-        <p className="expandableList__title">{props.title}</p>
+        <p className="expandableList__title">{title}</p>
         <Chevron className={`${setRotate}`} width={10} fill={"#777"} />
       </button>
       <div
@@ -36,7 +34,7 @@ function ExpandableList(props) {
         style={{ maxHeight: `${setHeight}` }}
         className="expandableList__content"
       >
-        <div className="expandableList__text">{props.children}</div>
+        <div className="expandableList__text">{children}</div>
       </div>
     </div>
   );

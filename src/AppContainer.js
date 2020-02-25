@@ -16,14 +16,14 @@ class AppContainer extends Component {
     }
   
     componentDidMount() {
-      const url = config.userUrl + '?results=' + config.numberCards + '&nat=US';
+      const url = 'https://jsonplaceholder.typicode.com/users' || config.userUrl + '?results=' + config.numberCards + '&nat=US';
       fetch(url)
         .then(res => res.json())
         .then(
           (result) => {
             this.setState({
               isLoaded: true,
-              items: this.buildObject(result.results)
+              items: this.buildObject(result.results||result)
             });
           },
           // Note: it's important to handle errors here
@@ -39,19 +39,18 @@ class AppContainer extends Component {
     }
 
     buildObject(result) {
-      let sortedItems = result.sort((a, b) => (a.name.first > b.name.first ? 1 : -1));
-     
-      let obj = config.tabs.map(item => {
+      const sortedItems = result.sort((a, b) => (a.name || a.name.first > b.name ||  b.name.first ? 1 : -1));
+      const filteredMappedItems = config.tabs.map(item => {
         item = this.filterItems(item, sortedItems);
         return item;
-      })
-      console.log(obj)
-      return obj;
+      });
+
+      return filteredMappedItems;
     }
 
     filterItems(alphabet, sortedObject) {
       let alphabetObject = {};
-      let filterdObj = sortedObject.filter(item =>  item.name.first.charAt(0).toLowerCase() === alphabet);
+      let filterdObj = sortedObject.filter(item =>  (item.name || item.name.first).charAt(0).toLowerCase() === alphabet);
       alphabetObject.alphabet = alphabet;
       alphabetObject.itemCollection = filterdObj;
       return alphabetObject;
@@ -74,12 +73,12 @@ class AppContainer extends Component {
               <div label={item.alphabet} count={item.itemCollection.length}>
                  {
                    item.itemCollection.map( (coll, index) => (
-                    <ExpandableList title={`${coll.name.last}, ${coll.name.first}`}>
+                    <ExpandableList title={`${coll.name || coll.name.last}, ${coll.name || coll.name.first}`}>
                     <ContactItem
                       key={index}
-                      name={`${coll.name.last}, ${coll.name.first.toUpperCase()}`}
+                      name={`${coll.name || coll.name.last}, ${(coll.name || coll.name.first).toUpperCase()}`}
                       email={coll.email}
-                      pic={coll.picture.thumbnail}
+                      //*pic={coll.picture.thumbnail || ''}
                     />
                   </ExpandableList>
                    ))
