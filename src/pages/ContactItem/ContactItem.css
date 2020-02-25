@@ -1,44 +1,23 @@
-.UserCard {
-    border-radius: 10px;
-    background: #a1b9df; /* fallback for old browsers */
-  }
-  
-  .UserCard img {
-    width: 120px;
-    height: 120px;
-    margin: 8px 0 0 0;
-    border-radius: 50%;
-    border: 4px solid white;
-    object-fit: cover;
-  }
-  
-  .UserCardTop {
-    height: 52%;
-    width: 100%;
-    overflow: hidden;
-    text-align: center;
-  }
-  
-  .UserCardBottom {
-    min-height: 40%;
-    overflow: auto;
-    min-width: 100%;
-    max-width: 100%;
-    padding: 0 10px 5px;
-    overflow-wrap: break-word;
-  }
-  
-  .UserCardBottom::-webkit-scrollbar {
-    width: 3px;
-    height: 1px;
-    transition: all 0.5s;
-    z-index: 10;
-  }
-  .UserCardBottom::-webkit-scrollbar-track {
-    background-color: #a1b9df;
-  }
-  .UserCardBottom::-webkit-scrollbar-thumb {
-    background-color: #a1b9df;
-    border-radius: 3px;
-  }
-  
+.card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  min-height: 300px;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.details-container {
+  flex: 2;
+}
+
+.avatar-container {
+  flex-basis: 250px;
+}
